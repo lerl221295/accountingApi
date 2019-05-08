@@ -1,9 +1,5 @@
 ## Test Accounting Server
 
-Clone the project
-
-* Configure .env file for a dev or production enviroment
-
 ### Installations
 
 ```sh
