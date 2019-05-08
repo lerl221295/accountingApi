@@ -1,5 +1,11 @@
 ## Test Accounting Server
 
+### Run TESTS :)
+
+```sh
+$ npm run test 
+```
+
 ### Installations
 
 ```sh
