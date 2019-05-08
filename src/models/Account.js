@@ -49,7 +49,7 @@ class Account {
 
     async credit(amount) {
     	await this.acquire();
-        const getTransaction = this.transactionMaker('credid');
+        const getTransaction = this.transactionMaker('credit');
         this.balance += amount;
         const transaction = getTransaction(amount);
         this.transactions.push(transaction);
