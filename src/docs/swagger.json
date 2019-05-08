@@ -1,0 +1,196 @@
+{
+    "swagger": "2.0",
+    "info":
+    {
+        "description": "Account API",
+        "version": "1.0.0",
+        "title": "Account API"
+    },
+    "tags": [
+    {
+        "name": "Transactions",
+        "description": "Account transactions"
+    },
+    {
+        "name": "Default",
+        "description": "Access to Account balance"
+    }],
+    "schemes": [
+        "http"
+    ],
+    "paths":
+    {
+        "/transactions":
+        {
+            "get":
+            {
+                "tags": [
+                    "Transactions"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses":
+                {
+                    "200":
+                    {
+                        "description": "list of transactions",
+                        "schema":
+                        {
+                            "type": "array",
+                            "items":
+                            {
+                                "$ref": "#/definitions/TransactionResponseObject"
+                            }
+                        }
+                    }
+                }
+            },
+            "post":
+            {
+                "tags": [
+                    "Transactions"
+                ],
+                "description": "",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                {
+                    "in": "body",
+                    "name": "body",
+                    "required": true,
+                    "schema":
+                    {
+                        "$ref": "#/definitions/TransactionInputObject"
+                    }
+                }],
+                "responses":
+                {
+                    "200":
+                    {
+                        "$ref": "#/definitions/TransactionResponseObject"
+                    },
+                    "409":
+                    {
+                        "description": "Invalid operation"
+                    }
+                }
+            }
+        },
+        "/transactions/{id}":
+        {
+            "get":
+            {
+                "tags": [
+                    "Transactions"
+                ],
+                "description": "Returns a single transaction",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "description": "ID of transaction",
+                    "required": true,
+                    "type": "integer",
+                    "format": "int64"
+                }],
+                "responses":
+                {
+                    "200":
+                    {
+                        "description": "successful operation",
+                        "schema":
+                        {
+                            "$ref": "#/definitions/TransactionResponseObject"
+                        }
+                    },
+                    "404":
+                    {
+                        "description": "Transaction not found"
+                    }
+                }
+            }
+        },
+        "/default" : {
+          "get": {
+            "tags": [
+                    "Default"
+                ],
+                "description": "Returns the account balance",
+                "produces": [
+                    "application/json"
+                ],
+                "responses":
+                {
+                    "200":
+                    {
+                        "description": "successful operation",
+                        "schema":
+                        {
+                          "type": "object",
+                          "properties": {
+                            "balance": {
+                              "type": "integer"
+                            }
+                          }
+                        }
+                    }
+                }
+          }
+        }
+    },
+    "definitions":
+    {
+        "TransactionInputObject":
+        {
+            "type": "object",
+            "properties":
+            {
+                "type":
+                {
+                    "type": "string",
+                    "enum": ["credit", "debit"]
+                },
+                "amount":
+                {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            }
+        },
+        "TransactionResponseObject":
+        {
+            "type": "object",
+            "properties":
+            {
+                "id":
+                {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "type":
+                {
+                    "type": "string",
+                    "enum": ["credit", "debit"]
+                },
+                "amount":
+                {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "effectiveDate":
+                {
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        }
+    }
+}

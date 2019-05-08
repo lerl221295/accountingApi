@@ -4,6 +4,8 @@ import bodyParser from 'body-parser';
 import routes from './routes';
 import cors from 'cors';
 import {config} from 'dotenv';
+import swaggerUi from 'swagger-ui-express';
+const swaggerDocument = require('./docs/swagger.json');
 
 config();
 
@@ -13,9 +15,8 @@ let app = express(),
 app.use(bodyParser.json());
 app.use(cors());
 routes(app);
-app.get('/', (req, res) => {
-    res.status(200).json({ message: "Welcome to Accounting API!!!" });
-});
+app.use('/', swaggerUi.serve);
+app.get('/', swaggerUi.setup(swaggerDocument, {explorer: true}));
 app.listen(port);
 
 module.exports = app;

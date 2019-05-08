@@ -24,3 +24,7 @@ $ npm run dev
 $ docker build -t lrojas/account-api .
 $ docker run -p 8000:8000 -d lrojas/account-api
 ```
+
+### Explorer
+
+* init app, and then go to your localhost:8000/

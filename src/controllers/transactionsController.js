@@ -48,7 +48,12 @@ class AccountController {
 
     async get(req, res) {
         const transaction = await this.account.getTransaction(req.params.id);
-        res.send(transaction);
+        if(transaction){
+            res.send(transaction);
+        } else {
+            res.status(404).send();
+        }
+        
     }
 }
 

@@ -4,7 +4,7 @@
   "description": "Accounting coding test - server",
   "scripts": {
     "clean": "rm -rf build && mkdir build",
-    "build-babel": "babel -d ./build ./src -s",
+    "build-babel": "babel -d ./build ./src -s && cp -r ./src/docs ./build/docs",
     "build-test": "babel -d ./build/test ./test -s",
     "build": "npm run clean && npm run build-babel && npm run build-test",
     "start": "npm run build && node ./build/server.js",
@@ -36,6 +36,7 @@
     "dotenv": "^5.0.1",
     "express": "^4.14.0",
     "lodash": "^4.17.4",
+    "swagger-ui-express": "^4.0.2",
     "validate.js": "^0.12.0"
   }
 }
