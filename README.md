@@ -22,5 +22,5 @@ $ npm run dev
 
 ```sh
 $ docker build -t lrojas/account-api .
-$ docker run -p 8080:8000 -d lrojas/account-api
+$ docker run -p 8000:8000 -d lrojas/account-api
 ```
